@@ -19,6 +19,7 @@ export class Tab1Page {
    classificacao: 76,
    cartaz: 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/hq2igFqb31fDqGotz8ZuUfwKgn8.jpg',
    generos: ['Fantasia', 'Ação', 'Aventura'],
+   pagina: '/dr-estranho-mt-vs-lk',
 },
 {
   nome: 'Batman (2022)',
@@ -26,7 +27,8 @@ export class Tab1Page {
   duracao: '3h 5m',
   classificacao: 78,
   cartaz: 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/wd7b4Nv9QBHDTIjc2m7sr0IUMoh.jpg',
-  generos: ['Crime', 'Mistério', 'Thriller']
+  generos: ['Crime', 'Mistério', 'Thriller'],
+  pagina: '/batman',
 },
 {
   nome: 'Sonic 2: O Filme (2022)',
