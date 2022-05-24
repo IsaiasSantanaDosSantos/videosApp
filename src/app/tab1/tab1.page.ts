@@ -1,18 +1,19 @@
-import { IListaFilmes } from './../models/IFilmeAPI.model';
+import { IListaFilmes, IFilmeApi } from './../models/IFilmeAPI.model';
 import {  Router } from '@angular/router';
 import { IFilme } from '../models/IFilme.model';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 import { DadosService } from './../services/dados.service';
 import { FilmeService } from './../services/filme.service';
+import { GeneroService } from '../services/genero.service';
 
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
-export class Tab1Page {
+export class Tab1Page implements OnInit {
 
   titulo =  'Filmes';
   listaVideos: IFilme[] = [
@@ -40,14 +41,18 @@ export class Tab1Page {
 
   listaFilmes: IListaFilmes;
 
+  generos: string[] = [];
+
   constructor(
     public alertController: AlertController,
     public toastController: ToastController,
     public dadosServices: DadosService,
     public filmeService: FilmeService,
+    public generoSevice: GeneroService,
     public route: Router) {}
 
-    buscarFilmes(evento){
+
+    buscarFilmes(evento: any){
       //console.log(evento.target.value);
       const busca = evento.target.value;
       if(busca && busca.trim() !== '') {
@@ -58,7 +63,7 @@ export class Tab1Page {
       }
     }
 
-    exibirFilme(filme: IFilme){
+    exibirFilme(filme: IFilmeApi){
       this.dadosServices.guardarDados('filme', filme);
       this.route.navigateByUrl('/dados-filme');
     }
@@ -96,6 +101,17 @@ export class Tab1Page {
       color: `success`
     });
     toast.present();
+  }
+
+  ngOnInit(){
+    this.generoSevice.buscarGeneros().subscribe(dados => {
+      console.log('Generos:', dados.genres);
+      dados.genres.forEach(genero => {
+        this.generos[genero.id] = genero.name;
+      });
+
+      this.dadosServices.guardarDados('generos', this.generos);
+    });
   }
 
 }
