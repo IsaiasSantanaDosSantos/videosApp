@@ -13,6 +13,10 @@ const routes: Routes = [
   {
     path: 'dr-estranho-mt-vs-lk',
     loadChildren: () => import('./filmes/dr-estranho-mt-vs-lk/dr-estranho-mt-vs-lk.module').then( m => m.DrEstranhoMtVsLkPageModule)
+  },
+  {
+    path: 'dados-filme',
+    loadChildren: () => import('./dados-filme/dados-filme.module').then( m => m.DadosFilmePageModule)
   }
 ];
 @NgModule({
