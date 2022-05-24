@@ -5,10 +5,13 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-searchbar placeholder="Buscar..."></ion-searchbar>
+  <ion-searchbar
+    (ionChange)="buscarFilmes($event)"
+    placeholder="Buscar..."
+  ></ion-searchbar>
   <ion-list>
     <ion-item-sliding *ngFor="let filme of listaVideos">
-      <ion-item lines="full" [routerLink]="filme.pagina">
+      <ion-item lines="full" (click)="exibirFilme(filme)">
         <ion-thumbnail slot="start">
           <img
             [src]="filme.cartaz"
@@ -41,6 +44,6 @@
 
 <!--
 
-  Próximo vídeo: https://www.youtube.com/watch?v=abCcNPriU08&list=PLuXkauUmG1ZH7iJfW5GpAKAQTo_NL5PZ7&index=18
+  Próximo vídeo: https://www.youtube.com/watch?v=JoO0mMzlyVk&list=PLuXkauUmG1ZH7iJfW5GpAKAQTo_NL5PZ7&index=25
 
 -->
